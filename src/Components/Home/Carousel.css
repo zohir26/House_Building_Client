@@ -1,0 +1,5 @@
+.fixed-height-img {
+    height: 400px; /* Set your desired fixed height */
+    object-fit: cover; /* This ensures the image covers the container without distortion */
+    width: 100%; /* Ensures the image takes the full width of the container */
+}
