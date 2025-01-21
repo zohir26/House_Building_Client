@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from '../../assets/logo.png'
+import { FaFacebook } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaLinkedin } from "react-icons/fa";
 const Footer = () => {
     return (
-        <div>
+        <div className='container mx-auto '>
             <footer className="footer bg-base-200 text-base-content p-10">
   <aside>
 <img src={logo}></img>
@@ -32,6 +35,15 @@ const Footer = () => {
     <a className="link link-hover">Privacy policy</a>
     <a className="link link-hover">Cookie policy</a>
   </nav>
+  <nav className=''>
+    <h6 className="footer-title ">Social Links</h6>
+    <div className='flex flex-col lg:flex-row gap-3  '>
+    <a href='https://www.facebook.com/' className="link link-hover "><FaFacebook /></a>
+    <a href='www.twitter.com' className="link link-hover"><FaXTwitter /> </a>
+    <a href='www.linkedin.com' className="link link-hover "><FaLinkedin /></a>
+    </div>
+  </nav>
+
 </footer>
         </div>
     );
