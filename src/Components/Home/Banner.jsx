@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { Carousel } from 'react-responsive-carousel';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Loading from '../Shared/Loading';
 
 const Banner = () => {
     const axiosSecure = useAxiosSecure();
@@ -16,7 +17,7 @@ const Banner = () => {
     });
 
     if (isLoading) {
-        return <div className="text-center text-lg font-bold">Loading...</div>;
+        return <Loading></Loading>;
     }
 
     if (isError) {
