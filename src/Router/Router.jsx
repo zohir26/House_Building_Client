@@ -7,7 +7,7 @@ import Login from "../Auth/Login";
 import Register from "../Auth/Register";
 import UpdateUser from "../Auth/UpdateUser";
 import PrivateRoute from "./PrivateRoute";
-import Apartments from "../Components/Home/Apartments";
+import Apartments from "../pages/Apartments";
 
 const router = createBrowserRouter([
     {
