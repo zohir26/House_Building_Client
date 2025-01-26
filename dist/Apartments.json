@@ -1,0 +1,72 @@
+[
+    {
+        "flat_name": "1A",
+        "location": "First Floor, Left Wing",
+        "price": "$1200 ",
+        "img": "https://i.ibb.co.com/nQp34Rb/Ap1.jpg",
+        "area": "750 sq ft"
+    },
+    {
+        "flat_name": "1B",
+        "location": "First Floor, Right Wing",
+        "price": "$1250 ",
+        "img": " https://i.ibb.co.com/QDdZgNP/ap10.jpg",
+        "area": "780 sq ft"
+    },
+    {
+        "flat_name": "2A",
+        "location": "Second Floor, Left Wing",
+        "price": "$1300 ",
+        "img": "https://i.ibb.co.com/mzrY8mt/Ap2.jpg",
+        "area": "800 sq ft"
+    },
+    {
+        "flat_name": "2B",
+        "location": "Second Floor, Right Wing",
+        "price": "$1350 ",
+        "img": "https://i.ibb.co.com/rHdKFxr/Ap3.jpg",
+        "area": "820 sq ft"
+    },
+    {
+        "flat_name": "3A",
+        "location": "Third Floor, Left Wing",
+        "price": "$1400 ",
+        "img": "https://i.ibb.co.com/Jm1PxgB/AP4.jpg",
+        "area": "850 sq ft"
+    },
+    {
+        "flat_name": "3B",
+        "location": "Third Floor, Right Wing",
+        "price": "$1450 ",
+        "img": "https://i.ibb.co.com/jwWh31Q/ap5.jpg",
+        "area": "870 sq ft"
+    },
+    {
+        "flat_name": "4A",
+        "location": "Fourth Floor, Left Wing",
+        "price": "$1500",
+        "img": "https://i.ibb.co.com/JR6vKb4/ap6.jpg",
+        "area": "900 sq ft"
+    },
+    {
+        "flat_name": "4B",
+        "location": "Fourth Floor, Right Wing",
+        "price": "$1550 ",
+        "img": "https://i.ibb.co.com/Wz1wp8D/ap7.jpg",
+        "area": "920 sq ft"
+    },
+    {
+        "flat_name": "5A",
+        "location": "Fifth Floor, Left Wing",
+        "price": "$1600",
+        "img": "https://i.ibb.co.com/F8DcsDy/ap8.jpg",
+        "area": "950 sq ft"
+    },
+    {
+        "flat_name": "5B",
+        "location": "Fifth Floor, Right Wing",
+        "price": "$1650",
+        "img": "https://i.ibb.co.com/F8DcsDy/ap8.jpg",
+        "area": "970 sq ft"
+    }
+]

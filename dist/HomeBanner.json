@@ -1,0 +1,39 @@
+[
+
+    {
+        "id": 1,
+        "name": "Canada",
+        "img": "   https://i.ibb.co.com/2dYtsSj/architecture-22527-1280.jpg",
+        "description": "Welcome to the main lobby, where you are greeted with a grand chandelier and modern seating."
+    },
+    {
+        "id": 2,
+        "name": "USA",
+        "img": "https://i.ibb.co.com/bKfyLmz/brutalism-7880446-1280-1.jpg",
+        "description": "Equipped with the latest technology, the conference room is perfect for meetings and presentations."
+    },
+    {
+        "id": 3,
+        "name": "Bangladesh",
+        "img": "https://i.ibb.co.com/kQM82bx/buildings-different-designs-glass.jpg",
+        "description": "Enjoy a breath of fresh air and a stunning view in our rooftop garden."
+    },
+    {
+        "id": 4,
+        "name": "Europe",
+        "img": "https://i.ibb.co.com/f9ZJwPt/city-4667143-1280.jpg",
+        "description": "Stay fit and healthy with our state-of-the-art fitness center, open 24/7."
+    },
+    {
+        "id": 5,
+        "name": "Los Angeles",
+        "img": "https://i.ibb.co.com/vJJvWvF/modern-business-building-with-glass-wall-from-empty-floor.jpg",
+        "description": "Secure and spacious parking garage with easy access to the building."
+    },
+    {
+        "id": 6,
+        "name": "Ukraine",
+        "img": "https://i.ibb.co.com/kQM82bx/buildings-different-designs-glass.jpg",
+        "description": "Grab a coffee or a quick meal at our on-site cafeteria, offering a variety of options."
+    }
+]

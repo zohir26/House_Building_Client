@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Alice Johnson",
+        "flat_purchased": "1A",
+        "experience": "Alice had a smooth buying process and found the flat to be exactly as advertised. She especially loved the modern interiors.",
+        "rating": 4.5
+    },
+    {
+        "id": 2,
+        "name": "Brian Smith",
+        "flat_purchased": "2B",
+        "experience": "Brian appreciated the professional service and the transparency in pricing. The location and amenities were a big plus for him.",
+        "rating": 5.0
+    },
+    {
+        "id": 3,
+        "name": "Catherine Lee",
+        "flat_purchased": "3A",
+        "experience": "Catherine found the flat-buying experience satisfactory but felt that the maintenance charges were a bit high. However, she enjoys the community atmosphere.",
+        "rating": 4.0
+    },
+    {
+        "id": 4,
+        "name": "David Williams",
+        "flat_purchased": "4B",
+        "experience": "David faced some delays in the final paperwork but was pleased with the overall quality and design of the flat.",
+        "rating": 3.8
+    },
+    {
+        "id": 5,
+        "name": "Emily Brown",
+        "flat_purchased": "5A",
+        "experience": "Emily appreciated the easy communication and support from the sales team. The flat's proximity to her workplace was a major advantage.",
+        "rating": 4.7
+    },
+    {
+        "id": 6,
+        "name": "Frank Green",
+        "flat_purchased": "1B",
+        "experience": "Frank had a positive experience with the buying process and is happy with his flat. The amenities and neighborhood are great.",
+        "rating": 4.2
+    }
+]

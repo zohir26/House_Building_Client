@@ -1,0 +1,72 @@
+[
+    {
+        "id": 1,
+        "description": "10% off on 1 month rent for new tenants",
+        "img": "https://i.ibb.co.com/3Rcv3tQ/coupon-1018681-1280.jpg",
+        "main_price": "$1000",
+        "coupon_price": "$900"
+    },
+    {
+        "id": 2,
+        "description": "20% off on parking fee for the first 3 months",
+        "img": "https://i.ibb.co.com/bmwcn20/ticket-2974645-1280.jpg",
+        "main_price": "$200",
+        "coupon_price": "$160"
+    },
+    {
+        "id": 3,
+        "description": "Free gym membership for the first 6 months",
+        "img": "https://i.ibb.co.com/LJtQqJn/coupon-1828620-1280.png",
+        "main_price": "$300",
+        "coupon_price": "Free"
+    },
+    {
+        "id": 4,
+        "description": "15% off on pet fee for the first 3 months",
+        "img": "https://i.ibb.co.com/r6dNVCZ/coupon-2435161-1280.png",
+        "main_price": "$100",
+        "coupon_price": "$85"
+    },
+    {
+        "id": 5,
+        "description": "Free access to the swimming pool for 1 month",
+        "img": "https://i.ibb.co.com/s1f38ds/cinema-ticket-1075066-1280.png",
+        "main_price": "$50",
+        "coupon_price": "Free"
+    },
+    {
+        "id": 6,
+        "description": "10% off on security deposit for new tenants",
+        "img": "https://i.ibb.co.com/3Rcv3tQ/coupon-1018681-1280.jpg",
+        "main_price": "$1000",
+        "coupon_price": "$900"
+    },
+    {
+        "id": 7,
+        "description": "20% off on laundry services for 6 months",
+        "img": "https://i.ibb.co.com/bmwcn20/ticket-2974645-1280.jpg",
+        "main_price": "$100",
+        "coupon_price": "$80"
+    },
+    {
+        "id": 8,
+        "description": "Free community event ticket",
+        "img": "https://i.ibb.co.com/r6dNVCZ/coupon-2435161-1280.png",
+        "main_price": "$20",
+        "coupon_price": "Free"
+    },
+    {
+        "id": 9,
+        "description": "50% off on guest room booking for a week",
+        "img": "https://i.ibb.co.com/LJtQqJn/coupon-1828620-1280.png",
+        "main_price": "$500",
+        "coupon_price": "$250"
+    },
+    {
+        "id": 10,
+        "description": "30% off on late rent fee for the first 3 months",
+        "img": "https://i.ibb.co.com/bmwcn20/ticket-2974645-1280.jpg",
+        "main_price": "$100",
+        "coupon_price": "$70"
+    }
+]
