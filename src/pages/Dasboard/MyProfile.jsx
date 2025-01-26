@@ -1,24 +1,26 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
+// import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../provider/AuthProvider';
 import Loading from '../../Components/Shared/Loading';
+import useMyAgreement from '../../Hooks/useMyAgreement';
 
 const MyProfile = () => {
-  const axiosSecure = useAxiosSecure(); // Axios instance with secure headers
+//   const axiosSecure = useAxiosSecure(); // Axios instance with secure headers
   const { user } = useContext(AuthContext); // Get the logged-in user
 
   // Fetch agreement data using TanStack Query
-  const { data: agreements = [], isLoading, error } = useQuery({
-    queryKey: ['agreement', user?.email], // Unique key with dependency on user.email
-    queryFn: async () => {
-      const response = await axiosSecure.get(`/agreement`, {
-        params: { userEmail: user?.email }, // Pass user email as query parameter
-      });
-      return response.data; // Return the fetched data
-    },
-    enabled: !!user?.email, // Ensure the query runs only when user.email is available
-  });
+//   const { data: agreements = [], isLoading, error } = useQuery({
+//     queryKey: ['agreement', user?.email], // Unique key with dependency on user.email
+//     queryFn: async () => {
+//       const response = await axiosSecure.get(`/agreement`, {
+//         params: { userEmail: user?.email }, // Pass user email as query parameter
+//       });
+//       return response.data; // Return the fetched data
+//     },
+//     enabled: !!user?.email, // Ensure the query runs only when user.email is available
+//   });
+const { agreements, isLoading, error } = useMyAgreement(user?.email);
 
   if (isLoading) {
     return <Loading />;
@@ -48,30 +50,47 @@ const MyProfile = () => {
       </div>
 
       {/* Agreement Details */}
-      <div className="mt-8">
-        <h2 className="text-xl font-bold text-gray-800">Rented Apartment Details</h2>
+      <div className="min-h-screen flex justify-center  bg-gray-50 p-6">
+      <div className="w-full max-w-4xl">
+        <h2 className="text-3xl font-semibold text-indigo-600 text-center mb-8">Rented Booking Details</h2>
+
         {agreements.length > 0 ? (
-          <ul className="mt-4 space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {agreements.map((agreement) => (
-              <li key={agreement._id} className="p-6 bg-gray-100 rounded-lg shadow-md">
-                <div className="flex flex-col md:flex-row justify-between items-start">
-                  <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row md:space-x-4">
-                    <p><strong>Flat No: </strong>{agreement.flatName}</p>
-                    <p><strong>Location: </strong>{agreement.location}</p>
-                    <p><strong>Area: </strong>{agreement.area}</p>
-                  </div>
-                  <div className="mt-4 md:mt-0">
-                    <p><strong>Price: </strong>{agreement.price}</p>
-                    <p><strong>Agreement Accepted On: </strong>{new Date(agreement.acceptDate).toLocaleDateString()}</p>
-                  </div>
+              <div
+                key={agreement._id}
+                className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                {/* Flat No and Location */}
+                <div className="mb-4">
+                  <p className="text-xl font-semibold text-indigo-700"><strong>Flat No:</strong> {agreement.flatName}</p>
+                  <p className="text-gray-700 text-lg"><strong>Location:</strong> {agreement.location}</p>
                 </div>
-              </li>
+
+                {/* Area and Price */}
+                <div className="mb-4">
+                  <p className="text-lg"><strong>Area:</strong> {agreement.area}</p>
+                  <p className="text-lg"><strong>Price:</strong> {agreement.price}</p>
+                </div>
+
+                {/* Agreement Accepted Date */}
+                <div className="mt-auto">
+                  <p className="text-lg text-gray-600"><strong>Agreement Accepted On:</strong> {new Date(agreement.acceptDate).toLocaleDateString()}</p>
+                </div>
+                
+              </div>
+              
             ))}
-          </ul>
+            <div className='flex justify-center items-center'>
+            <button className='btn btn-warning '>Make payment</button>
+            </div>
+          </div>
         ) : (
-          <p className="mt-4 text-gray-500">No agreements found.</p>
+          <p className="mt-4 text-gray-500 text-center">No agreements found.</p>
         )}
       </div>
+      
+    </div>
     </div>
   );
 };
