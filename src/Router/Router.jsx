@@ -9,6 +9,7 @@ import UpdateUser from "../Auth/UpdateUser";
 import PrivateRoute from "./PrivateRoute";
 import Apartments from "../pages/Apartments";
 
+
 const router = createBrowserRouter([
     {
       path: "/",
