@@ -9,7 +9,9 @@ import UpdateUser from "../Auth/UpdateUser";
 import PrivateRoute from "./PrivateRoute";
 import Apartments from "../pages/Apartments";
 import Dashboard from "../Layouts/Dashboard";
-import Cart from "../pages/Dasboard/Cart/Cart";
+import Cart from "../pages/Dasboard/Cart/Booking";
+import Booking from "../pages/Dasboard/Cart/Booking";
+import MyProfile from "../pages/Dasboard/MyProfile";
 
 
 const router = createBrowserRouter([
@@ -45,8 +47,12 @@ const router = createBrowserRouter([
       element: <Dashboard></Dashboard>,
       children: [
         {
-          path: 'cart',
-          element: <Cart></Cart>
+          path: 'booking',
+          element: <Booking></Booking>
+        },
+        {
+          path:'myProfile',
+          element: <MyProfile></MyProfile>
         }
       ]
     }

@@ -1,22 +1,78 @@
 import { NavLink, Outlet } from "react-router-dom";
-
+import Navbar from "../Components/Shared/Navbar";
+import { FaCalendar, FaOpencart, FaStore } from "react-icons/fa6";
+import { FaHome } from "react-icons/fa";
+import { GrAnnounce } from "react-icons/gr";
+import { CgProfile } from "react-icons/cg";
+import { FaHistory } from "react-icons/fa";
+import { MdOutlinePayments } from "react-icons/md";
 
 const Dashboard = () => {
     return (
-        <div>
-            {/* Side bar */}
-            <div className="w-64 min-h-full bg-orange-400">
-            <ul className="menu">
-                <li><NavLink to= '/dashboard/cart'> My cart </NavLink></li>
-            </ul>
+        <>
+            <Navbar></Navbar>
+            <div className="flex gap-4 ">
+                {/* Side bar */}
+                <div className="w-64 min-h-screen bg-orange-400">
+                    <ul className="menu text-white text-2xl">
+                        {/* <li>
+                            <NavLink to='/dashboard/userHome'>
+                                <FaHome />
+                                User Home </NavLink>
+                        </li> */}
+                        <li>
+                            <NavLink to='/dashboard/myProfile'>
+                            <CgProfile />
+                                My Profile </NavLink>
+                        </li>
+                        
+                        <li>
+                            <NavLink to='/dashboard/reservation'>
+                                <FaCalendar />
+                                Reservation </NavLink>
+                        </li>
+                        <li>
+
+                            <NavLink to='/dashboard/booking'>
+                                <FaOpencart />
+                                My Booking </NavLink>
+                        </li>
+                        <li>
+
+                            <NavLink to='/dashboard/payment'>
+                            <MdOutlinePayments />
+
+                                Make Payment</NavLink>
+                        </li>
+                        <li>
+
+                            <NavLink to='/dashboard/payHistory'>
+                            <FaHistory />
+                                Payment History </NavLink>
+                        </li>
+
+                        <li>
+
+                            <NavLink to='/dashboard/announce'>
+                            <GrAnnounce />
+                                Announcement </NavLink>
+                        </li>
+                        <div className="divider"></div>
+                        <li>
+                            <NavLink to='/'>
+                                <FaHome />
+                                Home </NavLink>
+                        </li>
+                    </ul>
+
+                </div>
+                {/* Dashboard Content */}
+                <div className="flex flex-1 py-8 mx-auto justify-center ">
+                    <Outlet></Outlet>
+                </div>
 
             </div>
-            {/* Dashboard Content */}
-            <div className="flex-1">
-                <Outlet></Outlet>
-            </div>
-
-        </div>
+        </>
     );
 };
 
