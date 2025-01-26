@@ -6,9 +6,11 @@ import Footer from "../Components/Shared/Footer";
 import ReactPaginate from "react-paginate";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const Apartments = () => {
    const {user} = useContext(AuthContext)
+   const navigate = useNavigate();
   const [appliedAgreements, setAppliedAgreements] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [apartments, setApartments] = useState([]);
@@ -64,6 +66,12 @@ const Apartments = () => {
   
 
   const handleAgreement = async (apartment) => {
+   
+    if (!user?.email) {
+      Swal.fire("Please log in to apply for an apartment.", "", "warning");
+      navigate("/login"); // Redirect to login page
+      return;
+    }
     const agreementData = {
       userEmail: user.email, // Replace with actual user email
       userName: user.displayName, // Replace with actual user name
