@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Loading from "../Components/Shared/Loading";
 import Navbar from "../Components/Shared/Navbar";
 import Footer from "../Components/Shared/Footer";
 import ReactPaginate from "react-paginate";
-import { FaSearchLocation } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Apartments = () => {
-
-
-  
+   const {user} = useContext(AuthContext)
+  const [appliedAgreements, setAppliedAgreements] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [apartments, setApartments] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
@@ -61,6 +61,29 @@ const Apartments = () => {
   if (error) {
     return <div className="text-center text-lg font-bold text-red-500">{error}</div>;
   }
+  
+
+  const handleAgreement = async (apartment) => {
+    const agreementData = {
+      userEmail: user.email, // Replace with actual user email
+      userName: user.displayName, // Replace with actual user name
+      flatName: apartment.flat_name,
+      location: apartment.location,
+      price: apartment.price,
+      area: apartment.area,
+    };
+
+    try {
+      const res = await axiosSecure.post("/agreement", agreementData);
+      Swal.fire("Success!", res.data.message, "success");
+      setAppliedAgreements((prev) => ({
+        ...prev,
+        [apartment._id]: true,
+      }));
+    } catch (err) {
+      Swal.fire("Error!", err.response?.data?.message || "Something went wrong.", "error");
+    }
+  };
 
   return (
     <>
@@ -95,8 +118,16 @@ const Apartments = () => {
                 <p className="text-gray-500 mt-2">Floor & Block: {apartment.location}</p>
                 <p className="text-gray-700 font-medium mt-2">Rent: {apartment.price}</p>
                 <p className="text-gray-500 mt-1">Area: {apartment.area}</p>
-                <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
-                  Agreement
+                <button
+                  className={`mt-4 w-full py-2 rounded-lg ${
+                    appliedAgreements[apartment._id]
+                      ? "bg-gray-400 text-white cursor-not-allowed"
+                      : "bg-blue-600 text-white hover:bg-blue-700"
+                  }`}
+                  onClick={() => handleAgreement(apartment)}
+                  disabled={appliedAgreements[apartment._id]}
+                >
+                  {appliedAgreements[apartment._id] ? "Pending" : "Agreement"}
                 </button>
               </div>
             </div>
