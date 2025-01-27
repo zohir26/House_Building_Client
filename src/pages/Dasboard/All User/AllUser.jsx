@@ -6,15 +6,20 @@ import Swal from 'sweetalert2';
 
 const AllUser = () => {
     const axiosSecure = useAxiosSecure();
-    const { data: users = [] } = useQuery({
-        queryKey: ['users', refetch],
+    const { data: users = [], refetch } = useQuery({
+        queryKey: ['users'],
+        // for localstorage the headers need to send
         queryFn: async () => {
-            const res = await axiosSecure.get('/users')
+            const res = await axiosSecure.get('/users',{
+                headers:{
+                    authorization:`Bearer ${localStorage.getItem('access-token')}`
+                }
+            });
             return res.data;
         }
-    })
+    });
 
-    const handleDeleteUser= (user)=>{
+    const handleDeleteUser = (user) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -23,26 +28,54 @@ const AllUser = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 axiosSecure.delete(`/users/${user._id}`)
-                .then (res =>{
-                    if(res.data.deletedCount>0){
-                        refetch();
-                        Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
-                            icon: "success"
-                          });
-                    }
-                })
-             
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    });
             }
-          });
-    }
+        });
+    };
+
+    const handleMakeAdmin = (user) => {
+        Swal.fire({
+            title: `Are you sure to make this ${user.name} admin?`,
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.patch(`/users/admin/${user._id}`)
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            Swal.fire({
+                                position: 'top-center',
+                                title: `${user.name} is an admin now`,
+                                text: "Your file has been updated.",
+                                icon: "success",
+                                timer: 1500
+                            });
+                            refetch();
+                        }
+                    });
+            }
+        });
+    };
+
     return (
-        <div >
-            <div className=' flex justify-evenly gap-10 w-full'>
+        <div>
+            <div className='flex justify-evenly gap-10 w-full'>
                 <h2 className='text-3xl font-bold text-center'>All Users</h2>
                 <h2 className='text-3xl font-bold text-center'>Total Users: {users.length}</h2>
             </div>
@@ -57,25 +90,26 @@ const AllUser = () => {
                             <th>Role</th>
                             <th>Action</th>
                         </tr>
-                            
                     </thead>
                     <tbody>
                         {
-                            users.map((user,index) => 
+                            users.map((user, index) =>
                                 <tr key={user._id}>
-                                    <th>{index +1 }</th>
+                                    <th>{index + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>
-                                        <button className='btn btn-warning'>
-                                            <FaUser></FaUser>
-                                        </button>
+                                        {user.role ==='admin'?'admin':<button
+                                            onClick={() => handleMakeAdmin(user)}
+                                            className='btn btn-warning'>
+                                            <FaUser />
+                                        </button>}
                                     </td>
                                     <td>
-                                    <button
-                                    onClick={handleDeleteUser(user)}
-                                    className='btn btn-error'>
-                                           <FaTrash></FaTrash>
+                                        <button
+                                            onClick={() => handleDeleteUser(user)}
+                                            className='btn btn-error'>
+                                            <FaTrash />
                                         </button>
                                     </td>
                                 </tr>)
