@@ -8,6 +8,8 @@ import { FaHistory } from "react-icons/fa";
 import { MdOutlinePayments } from "react-icons/md";
 
 const Dashboard = () => {
+   // todo: get isAdmin value from database
+    const isAdmin = true;
     return (
         <>
             <Navbar></Navbar>
@@ -15,7 +17,56 @@ const Dashboard = () => {
                 {/* Side bar */}
                 <div className="w-64 min-h-screen bg-orange-400">
                     <ul className="menu text-white text-2xl">
+                        {
+                            isAdmin ? 
+                            <>
+                            <li>
+                            <NavLink to='/dashboard/myProfile'>
+                            <CgProfile />
+                                Admin Profile </NavLink>
+                        </li>
+                        
                         {/* <li>
+                            <NavLink to='/dashboard/reservation'>
+                                <FaCalendar />
+                                Reservation </NavLink>
+                        </li> */}
+                        <li>
+
+                            <NavLink to='/dashboard/booking'>
+                                <FaOpencart />
+                                Manage Booking </NavLink>
+                        </li>
+                        <li>
+
+                            <NavLink to='/dashboard/allUsers'>
+                            <CgProfile />
+                                All Users </NavLink>
+                        </li>
+                        <li>
+
+                            <NavLink to='/dashboard/announcement'>
+                            <MdOutlinePayments />
+
+                                Make Announcement</NavLink>
+                        </li>
+                        <li>
+
+                            <NavLink to='/dashboard/agreement'>
+                            <FaHistory />
+                                Agreement Request </NavLink>
+                        </li>
+
+                        <li>
+
+                            <NavLink to='/dashboard/coupons'>
+                            <GrAnnounce />
+                               Manage Coupon </NavLink>
+                        </li>
+                            </>
+                            :
+                            <>
+                            {/* <li>
                             <NavLink to='/dashboard/userHome'>
                                 <FaHome />
                                 User Home </NavLink>
@@ -57,6 +108,8 @@ const Dashboard = () => {
                             <GrAnnounce />
                                 Announcement </NavLink>
                         </li>
+                            </>
+                        }
                         <div className="divider"></div>
                         <li>
                             <NavLink to='/'>

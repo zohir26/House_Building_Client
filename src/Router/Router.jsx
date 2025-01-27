@@ -12,6 +12,7 @@ import Dashboard from "../Layouts/Dashboard";
 import Cart from "../pages/Dasboard/Cart/Booking";
 import Booking from "../pages/Dasboard/Cart/Booking";
 import MyProfile from "../pages/Dasboard/MyProfile";
+import AllUser from "../pages/Dasboard/All User/AllUser";
 
 
 const router = createBrowserRouter([
@@ -55,6 +56,11 @@ const router = createBrowserRouter([
         {
           path:'myProfile',
           element: <MyProfile></MyProfile>
+        },
+        // admin routes
+        {
+          path:'allUsers',
+          element: <AllUser></AllUser>
         }
       ]
     }
