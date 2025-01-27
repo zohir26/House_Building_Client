@@ -38,7 +38,7 @@ const Dashboard = () => {
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/booking">
+                                    <NavLink to="/dashboard/manageBooking">
                                         <FaOpencart />
                                         Manage Booking
                                     </NavLink>
@@ -55,12 +55,12 @@ const Dashboard = () => {
                                         Make Announcement
                                     </NavLink>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <NavLink to="/dashboard/agreement">
                                         <FaHistory />
                                         Agreement Request
                                     </NavLink>
-                                </li>
+                                </li> */}
                                 <li>
                                     <NavLink to="/dashboard/coupons">
                                         <GrAnnounce />

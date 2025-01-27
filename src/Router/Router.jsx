@@ -18,6 +18,8 @@ import AddCoupon from "../pages/Dasboard/Coupon/AddCoupon";
 import ManageCoupon from "../pages/Dasboard/Coupon/ManageCoupon";
 import AddAnnouncement from "../pages/Dasboard/Annoucement/AddAnnouncement";
 import Announcement from "../pages/Dasboard/Annoucement/Announcement";
+import AdminProfile from "../pages/Dasboard/AdminProfile";
+import ManageBooking from "../pages/Dasboard/Cart/ManageBooking";
 
 
 const router = createBrowserRouter([
@@ -63,6 +65,19 @@ const router = createBrowserRouter([
           element: <MyProfile></MyProfile>
         },
         // admin routes
+
+        {
+          path:'adminProfile',
+          element: <AdminRoute>
+            <AdminProfile></AdminProfile>
+          </AdminRoute>
+        },
+        {
+          path:'manageBooking',
+          element:<AdminRoute>
+            <ManageBooking></ManageBooking>
+          </AdminRoute>
+        },
         {
           path:'allUsers',
           element: <AdminRoute>

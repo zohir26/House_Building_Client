@@ -7,10 +7,11 @@ import ReactPaginate from "react-paginate";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const Apartments = () => {
-   const {user} = useContext(AuthContext)
-   const navigate = useNavigate();
+  const { user } = useContext(AuthContext)
+  const navigate = useNavigate();
   const [appliedAgreements, setAppliedAgreements] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [apartments, setApartments] = useState([]);
@@ -21,6 +22,7 @@ const Apartments = () => {
   const [maxPrice, setMaxPrice] = useState('');
   const limit = 6;
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   useEffect(() => {
     const fetchApartments = async () => {
       try {
@@ -63,27 +65,79 @@ const Apartments = () => {
   if (error) {
     return <div className="text-center text-lg font-bold text-red-500">{error}</div>;
   }
-  
+
+
+  // const handleAgreement = async (apartment) => {
+
+  //   const { data: agreements = [], refetch } = useQuery({
+  //     queryKey: ['agreements'],
+  //     queryFn: async () => {
+  //       const res = await axiosSecure.get('/agreements');
+  //       return res.data;
+  //     },
+  //   });
+
+
+  //   if (!user?.email) {
+  //     Swal.fire("Please log in to apply for an apartment.", "", "warning");
+  //     navigate("/login"); // Redirect to login page
+  //     return;
+  //   }
+  //   const agreementData = {
+  //     userEmail: user.email, // Replace with actual user email
+  //     userName: user.displayName, // Replace with actual user name
+  //     flatName: apartment.flat_name,
+  //     location: apartment.location,
+  //     price: apartment.price,
+  //     area: apartment.area,
+  //   };
+
+  //   try {
+  //     const res = await axiosSecure.post("/agreement", agreementData);
+  //     Swal.fire("Success!", res.data.message, "success");
+  //     setAppliedAgreements((prev) => ({
+  //       ...prev,
+  //       [apartment._id]: true,
+  //     }));
+  //   } catch (err) {
+  //     Swal.fire("Error!", err.response?.data?.message || "Something went wrong.", "error");
+  //   }
+  // };
 
   const handleAgreement = async (apartment) => {
-   
     if (!user?.email) {
       Swal.fire("Please log in to apply for an apartment.", "", "warning");
       navigate("/login"); // Redirect to login page
       return;
     }
-    const agreementData = {
-      userEmail: user.email, // Replace with actual user email
-      userName: user.displayName, // Replace with actual user name
-      flatName: apartment.flat_name,
-      location: apartment.location,
-      price: apartment.price,
-      area: apartment.area,
-    };
 
     try {
-      const res = await axiosSecure.post("/agreement", agreementData);
-      Swal.fire("Success!", res.data.message, "success");
+      // Check the current agreement status
+      const res = await axiosPublic.get(`/agreementStatus/${apartment._id}`);
+      const { status } = res.data;
+
+      if (status === "pending" || status === "checked") {
+        Swal.fire({
+          icon: "info",
+          title: "Apartment Already Booked",
+          text: "The flat has already been booked. Please choose an available flat.",
+        });
+        return;
+      }
+
+      // Proceed with the agreement request
+      const agreementData = {
+        userEmail: user.email, // Replace with actual user email
+        userName: user.displayName, // Replace with actual user name
+        flatName: apartment.flat_name,
+        location: apartment.location,
+        price: apartment.price,
+        area: apartment.area,
+      };
+
+      const agreementRes = await axiosSecure.post("/agreement", agreementData);
+      Swal.fire("Success!", agreementRes.data.message, "success");
+
       setAppliedAgreements((prev) => ({
         ...prev,
         [apartment._id]: true,
@@ -95,7 +149,7 @@ const Apartments = () => {
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <div className="min-h-screen bg-gray-100 py-10 px-4">
         <h1 className="text-center text-3xl font-bold text-gray-800 mb-8">Available Apartments</h1>
         <div className="flex gap-3 p-6 justify-center items-center">
@@ -126,7 +180,7 @@ const Apartments = () => {
                 <p className="text-gray-500 mt-2">Floor & Block: {apartment.location}</p>
                 <p className="text-gray-700 font-medium mt-2">Rent: {apartment.price}</p>
                 <p className="text-gray-500 mt-1">Area: {apartment.area}</p>
-                <button
+                {/* <button
                   className={`mt-4 w-full py-2 rounded-lg ${
                     appliedAgreements[apartment._id]
                       ? "bg-gray-400 text-white cursor-not-allowed"
@@ -136,7 +190,18 @@ const Apartments = () => {
                   disabled={appliedAgreements[apartment._id]}
                 >
                   {appliedAgreements[apartment._id] ? "Pending" : "Agreement"}
+                </button> */}
+                <button
+                  className={`mt-4 w-full py-2 rounded-lg ${appliedAgreements[apartment._id]
+                      ? "bg-gray-400 text-white cursor-not-allowed"
+                      : "bg-blue-600 text-white hover:bg-blue-700"
+                    }`}
+                  onClick={() => handleAgreement(apartment)}
+                  disabled={appliedAgreements[apartment._id]}
+                >
+                  {appliedAgreements[apartment._id] ? "Pending" : "Agreement"}
                 </button>
+
               </div>
             </div>
           ))}
