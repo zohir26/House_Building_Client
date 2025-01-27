@@ -10,11 +10,7 @@ const AllUser = () => {
         queryKey: ['users'],
         // for localstorage the headers need to send
         queryFn: async () => {
-            const res = await axiosSecure.get('/users',{
-                headers:{
-                    authorization:`Bearer ${localStorage.getItem('access-token')}`
-                }
-            });
+            const res = await axiosSecure.get('/users');
             return res.data;
         }
     });

@@ -1,0 +1,55 @@
+import { useQuery } from '@tanstack/react-query';
+import React from 'react';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+
+const ManageCoupon = () => {
+    const axiosSecure = useAxiosSecure();
+    const { data: manageCoupon = [], refetch } = useQuery({
+        queryKey: ['coupon'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/coupons')
+            return res.data
+        }
+    })
+
+    return (
+        <div>
+            <div className='flex gap-4 justify-evenly'>
+                <h2 className='text-2xl font-bold text-center'>Manage Coupons</h2>
+                <h2 className='text-2xl font-bold text-center'>Total Coupons:{manageCoupon.length}</h2>
+            </div>
+
+            {/* coupon table */}
+            <div className="overflow-x-auto">
+                <table className="table table-zebra w-full">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Main Price</th>
+                            <th>Coupon Price</th>
+                            <th>Coupon Description</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            manageCoupon.map((coupon, index) =>
+                                <tr key={coupon._id}>
+                                    <th>{index + 1}</th>
+                                    <td>{coupon.main_price}</td>
+                                    <td>{coupon.coupon_price}</td>
+                                    <td>
+                                       {coupon.description}
+                                    </td>
+                                   
+                                </tr>)
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    );
+};
+
+export default ManageCoupon;

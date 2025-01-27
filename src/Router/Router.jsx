@@ -13,6 +13,9 @@ import Cart from "../pages/Dasboard/Cart/Booking";
 import Booking from "../pages/Dasboard/Cart/Booking";
 import MyProfile from "../pages/Dasboard/MyProfile";
 import AllUser from "../pages/Dasboard/All User/AllUser";
+import AdminRoute from "./AdminRoute";
+import AddCoupon from "../pages/Dasboard/Coupon/AddCoupon";
+import ManageCoupon from "../pages/Dasboard/Coupon/ManageCoupon";
 
 
 const router = createBrowserRouter([
@@ -60,8 +63,24 @@ const router = createBrowserRouter([
         // admin routes
         {
           path:'allUsers',
-          element: <AllUser></AllUser>
-        }
+          element: <AdminRoute>
+            <AllUser></AllUser>
+          </AdminRoute>
+        },
+        {
+          path:'addCoupons',
+          element: <AdminRoute>
+            <AddCoupon></AddCoupon>
+          </AdminRoute>
+        },
+        {
+          path:'coupons',
+          element: <AdminRoute>
+            <ManageCoupon></ManageCoupon>
+          </AdminRoute>
+        },
+        
+
       ]
     }
   ]);

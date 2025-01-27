@@ -1,15 +1,17 @@
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../Components/Shared/Navbar";
 import { FaCalendar, FaOpencart, FaStore } from "react-icons/fa6";
-import { FaHome } from "react-icons/fa";
-import { GrAnnounce } from "react-icons/gr";
+import { FaHome, FaMicrophone } from "react-icons/fa";
+import { GrAnnounce, GrCapacity } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
 import { FaHistory } from "react-icons/fa";
 import { MdOutlinePayments } from "react-icons/md";
+import useAdmin from "../Hooks/useAdmin";
 
 const Dashboard = () => {
+    // we should get the admin from proper api not like this 
    // todo: get isAdmin value from database
-    const isAdmin = true;
+    const isAdmin = useAdmin([]);
     return (
         <>
             <Navbar></Navbar>
@@ -45,8 +47,8 @@ const Dashboard = () => {
                         </li>
                         <li>
 
-                            <NavLink to='/dashboard/announcement'>
-                            <MdOutlinePayments />
+                            <NavLink to='/dashboard/addAnnouncement'>
+                            <FaMicrophone />
 
                                 Make Announcement</NavLink>
                         </li>
@@ -62,6 +64,12 @@ const Dashboard = () => {
                             <NavLink to='/dashboard/coupons'>
                             <GrAnnounce />
                                Manage Coupon </NavLink>
+                        </li>
+                        <li>
+
+                            <NavLink to='/dashboard/addCoupons'>
+                            <GrCapacity />
+                               Add Coupons </NavLink>
                         </li>
                             </>
                             :
