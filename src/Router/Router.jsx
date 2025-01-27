@@ -16,6 +16,8 @@ import AllUser from "../pages/Dasboard/All User/AllUser";
 import AdminRoute from "./AdminRoute";
 import AddCoupon from "../pages/Dasboard/Coupon/AddCoupon";
 import ManageCoupon from "../pages/Dasboard/Coupon/ManageCoupon";
+import AddAnnouncement from "../pages/Dasboard/Annoucement/AddAnnouncement";
+import Announcement from "../pages/Dasboard/Annoucement/Announcement";
 
 
 const router = createBrowserRouter([
@@ -79,6 +81,16 @@ const router = createBrowserRouter([
             <ManageCoupon></ManageCoupon>
           </AdminRoute>
         },
+        {
+          path:'addAnnouncement',
+          element: <AdminRoute>
+            <AddAnnouncement></AddAnnouncement>
+          </AdminRoute>
+        },
+        {
+          path:'announcement',
+          element: <Announcement></Announcement>
+        }
         
 
       ]
