@@ -8,11 +8,12 @@ import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import Navbar from '../Components/Shared/Navbar';
 import Footer from '../Components/Shared/Footer';
 import { auth, AuthContext } from '../provider/AuthProvider';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 const Login = () => {
   const navigate = useNavigate();
   const { signInUser } = useContext(AuthContext);
-
+  const axiosPublic = useAxiosPublic();
   const handleSignIn = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -64,7 +65,17 @@ const Login = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then(result => {
+        console.log(result.user)
         const user = result.user;
+        const userInfo = {
+          email: result.user.email,
+          name: result.user?.displayName
+        }
+        axiosPublic.post('users', userInfo)
+        .then(res=>{
+          console.log(res.data)
+        })
+        console.log(userInfo)
         Swal.fire({
           position: "top-center",
           icon: "success",

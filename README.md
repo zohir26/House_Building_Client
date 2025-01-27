@@ -42,10 +42,4 @@ Check out the live version of the **Building Management** app here:
 
 ---
 
-## Installation
 
-To run this project locally, follow these steps:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/building-management.git
