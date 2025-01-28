@@ -67,6 +67,20 @@ const CheckOutForm = ({ apartment, userEmail }) => {
                 timer: 1500
               });
             setSuccess("Payment successful!");
+
+            // save the payment data to database;
+              const payment= {
+                email:user.email,
+                price:price,
+                date: new Date().toISOString(),// use moment js
+                flatName:apartment.flatName,
+                name:user.userName || "Anonymous",
+                TransactionId:paymentIntent.id, 
+              }
+              axiosSecure.post('/payment', payment)
+              .then(res=>{
+                console.log(res.data)
+              })
           }
         } catch (err) {
           setError("An unexpected error occurred.");
