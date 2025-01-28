@@ -2,6 +2,7 @@ import useMyAgreement from '../../../Hooks/useMyAgreement';
 import Loading from '../../../Components/Shared/Loading';
 import { useContext } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const Booking = () => {
   const { user } = useContext(AuthContext);
@@ -59,7 +60,7 @@ const totalPrice = agreements.reduce((total, item) => {
               
             ))}
             <div className='flex justify-center items-center'>
-            <button className='btn btn-warning '>Make payment</button>
+            <Link to='/dashboard/payment' className='bg-warning p-4 rounded-lg font-bold '>Make payment</Link>
             </div>
           </div>
         ) : (

@@ -21,6 +21,7 @@ import Announcement from "../pages/Dasboard/Annoucement/Announcement";
 import AdminProfile from "../pages/Dasboard/AdminProfile";
 import ManageBooking from "../pages/Dasboard/Cart/ManageBooking";
 import ErrorPage from "../Error/ErrorPage";
+import Payment from "../pages/Dasboard/Payment/Payment";
 
 
 const router = createBrowserRouter([
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
         {
           path:'myProfile',
           element: <MyProfile></MyProfile>
+        },
+        {
+          path:'payment',
+          element: <Payment></Payment>
         },
         // admin routes
 
