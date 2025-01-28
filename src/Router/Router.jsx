@@ -22,6 +22,8 @@ import AdminProfile from "../pages/Dasboard/AdminProfile";
 import ManageBooking from "../pages/Dasboard/Cart/ManageBooking";
 import ErrorPage from "../Error/ErrorPage";
 import Payment from "../pages/Dasboard/Payment/Payment";
+import PaymentHistory from "../pages/Dasboard/Payment/PaymentHistory";
+import AllPayment from "../pages/Dasboard/Payment/allPayment";
 
 
 const router = createBrowserRouter([
@@ -70,6 +72,10 @@ const router = createBrowserRouter([
           path:'payment',
           element: <Payment></Payment>
         },
+        {
+          path:'paymentHistory',
+          element: <PaymentHistory></PaymentHistory>
+        },
         // admin routes
 
         {
@@ -106,6 +112,12 @@ const router = createBrowserRouter([
           path:'addAnnouncement',
           element: <AdminRoute>
             <AddAnnouncement></AddAnnouncement>
+          </AdminRoute>
+        },
+        {
+          path:'allPayment',
+          element:<AdminRoute>
+              <AllPayment></AllPayment>
           </AdminRoute>
         },
         {

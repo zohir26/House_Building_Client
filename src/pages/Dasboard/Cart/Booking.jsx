@@ -57,7 +57,7 @@ const totalPrice = agreements.reduce((total, item) => {
                 </div>
                 
               </div>
-              
+               
             ))}
             <div className='flex justify-center items-center'>
             <Link to='/dashboard/payment' className='bg-warning p-4 rounded-lg font-bold '>Make payment</Link>

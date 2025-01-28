@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../Components/Shared/Navbar";
 import {  FaOpencart} from "react-icons/fa6";
-import { FaHome, FaMicrophone } from "react-icons/fa";
+import { FaHome, FaMicrophone, FaMoneyBill } from "react-icons/fa";
 import { GrAnnounce, GrCapacity } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
 import { FaHistory } from "react-icons/fa";
@@ -74,6 +74,12 @@ const Dashboard = () => {
                         Add Coupons
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink to="/dashboard/allPayment">
+                        <FaMoneyBill />
+                        All Payment History
+                    </NavLink>
+                </li>
             </>
         );
     } else if (isMember) {
@@ -98,7 +104,7 @@ const Dashboard = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/dashboard/payHistory">
+                    <NavLink to="/dashboard/paymentHistory">
                         <FaHistory />
                         Payment History
                     </NavLink>
