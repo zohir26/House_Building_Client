@@ -6,6 +6,7 @@ import { createContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const CheckOutForm = ({ apartment, userEmail }) => {
     const stripe = useStripe();
@@ -89,7 +90,9 @@ const CheckOutForm = ({ apartment, userEmail }) => {
         }
       };
       
+const handleCouponPrice = ()=>{
 
+}
     return (
         <form onSubmit={handleSubmit} className="space-y-4">
             {/* Apartment Details */}
@@ -122,6 +125,25 @@ const CheckOutForm = ({ apartment, userEmail }) => {
                     className="w-full p-2 mt-1 text-gray-700 bg-gray-100 border border-gray-300 rounded-lg"
                 />
             </div>
+            <div className="flex flex-col lg:flex-row gap-4 lg:justify-center lg:items-center">
+            <div>
+                <label className="block text-sm font-medium text-gray-600">Coupon</label>
+                <input
+                    type="text"                   
+                    className="w-full p-2  text-gray-700 bg-gray-100 border border-gray-300 rounded-lg"
+                />
+            </div>
+            <div>
+              <Link to ="/coupons">
+              <button
+              onClick={handleCouponPrice}
+              className="btn p-2 mt-4 btn-primary">
+                All Coupons
+              </button>
+              </Link>
+            </div>
+            </div>
+            
 
             {/* Email */}
             <div>

@@ -24,6 +24,7 @@ import ErrorPage from "../Error/ErrorPage";
 import Payment from "../pages/Dasboard/Payment/Payment";
 import PaymentHistory from "../pages/Dasboard/Payment/PaymentHistory";
 import AllPayment from "../pages/Dasboard/Payment/allPayment";
+import Coupons from "../Components/Home/Coupons";
 
 
 const router = createBrowserRouter([
@@ -31,7 +32,10 @@ const router = createBrowserRouter([
       path: "/",
       element: <HomeLayout></HomeLayout>,
     },
-
+    {
+      path:'/coupons',
+      element: <Coupons></Coupons>
+    },
     {
       path:'/',
       element:<Home></Home>
