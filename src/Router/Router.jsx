@@ -20,6 +20,7 @@ import AddAnnouncement from "../pages/Dasboard/Annoucement/AddAnnouncement";
 import Announcement from "../pages/Dasboard/Annoucement/Announcement";
 import AdminProfile from "../pages/Dasboard/AdminProfile";
 import ManageBooking from "../pages/Dasboard/Cart/ManageBooking";
+import ErrorPage from "../Error/ErrorPage";
 
 
 const router = createBrowserRouter([
@@ -109,6 +110,10 @@ const router = createBrowserRouter([
         
 
       ]
+    },
+    {
+      path: "*",
+      element: <ErrorPage></ErrorPage>
     }
   ]);
 

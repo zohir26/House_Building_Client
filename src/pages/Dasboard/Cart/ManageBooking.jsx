@@ -6,13 +6,13 @@ import { useState } from 'react';
 
 const ManageBooking = () => {
   const axiosSecure = useAxiosSecure();
-  const [agreement, setAgreement] = useState([]);
+//   const [agreement, setAgreement] = useState([]);
   // Load agreement data
   const { data: agreements = [], refetch } = useQuery({
     queryKey: ['agreements'],
     queryFn: async () => {
       const res = await axiosSecure.get('/agreements');
-      setAgreement(res.data); 
+    //   setAgreement(res.data); 
       return res.data;
     },
   });
@@ -37,9 +37,9 @@ const ManageBooking = () => {
         });
         refetch(); // Refresh data
         // remove from ui after the the status is changed.
-        setAgreement((prev) =>
-            prev.filter((item) => item._id !== agreement._id)
-          );
+        // setAgreement((prev) =>
+        //     prev.filter((item) => item._id !== agreement._id)
+        //   );
       }
     } catch (error) {
       Swal.fire({
