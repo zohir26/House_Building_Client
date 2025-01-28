@@ -5,14 +5,16 @@ import { AuthContext } from "../provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 const useMember = () => {
-    const {user} = useContext(AuthContext)
+    const {user,loading} = useContext(AuthContext)
+
     const axiosSecure = useAxiosSecure();
-    if (!user?.email) {
-        console.error('User email is missing');
-        return false;
-    }
+    // if (!user?.email) {
+    //     console.error('User email is missing');
+    //     return false;
+    // }
     const {data:isMember,isLoading, error } = useQuery({
-        queryKey:[user?.email, 'isMember'],
+        queryKey:[ 'isMember', user?.email],
+        enabled: !loading && !!localStorage.getItem('access-token'),
         queryFn: async () => {
             try {
                 const res = await axiosSecure.get(`agreements/member/${user.email}`);

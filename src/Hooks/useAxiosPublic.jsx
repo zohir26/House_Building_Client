@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'https://building-management-server-umber.vercel.app',
     timeout: 5000,
     // headers: {'X-Custom-Header': 'foobar'}
     // headers: {
