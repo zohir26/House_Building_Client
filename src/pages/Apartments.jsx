@@ -152,7 +152,7 @@ const Apartments = () => {
       <Navbar />
       <div className="min-h-screen bg-gray-100 py-10 px-4">
         <h1 className="text-center text-3xl font-bold text-gray-800 mb-8">Available Apartments</h1>
-        <div className="flex gap-3 p-6 justify-center items-center">
+        <div className="flex flex-col lg:flex-row gap-3 p-6 justify-center items-center">
           <input
             className="p-4 rounded-xl"
             type="number"

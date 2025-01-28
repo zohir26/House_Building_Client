@@ -50,7 +50,7 @@ const AddAnnouncement = () => {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-400 to-purple-500 w-full">
             <div className="w-full max-w-md p-6 bg-white rounded-2xl shadow-xl">
-                <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">Add New Coupon</h2>
+                <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">Add Announcement</h2>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Main Price */}
                     <div>
@@ -72,7 +72,7 @@ const AddAnnouncement = () => {
                     {/* Coupon Description */}
                     <div>
                         <label htmlFor="description" className="block text-gray-600 font-medium mb-1">
-                            Coupon Description
+                             Description
                         </label>
                         <textarea
                             name="description"
