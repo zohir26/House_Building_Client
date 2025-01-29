@@ -79,7 +79,7 @@ const AddAnnouncement = () => {
                             id="description"
                             value={formData.description}
                             onChange={handleChange}
-                            placeholder="Enter coupon description"
+                            placeholder="Enter announcement description"
                             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             rows="4"
                             required
@@ -91,7 +91,7 @@ const AddAnnouncement = () => {
                             type="submit"
                             className="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-300"
                         >
-                            Add Coupon
+                            Add Announcement
                         </button>
                     </div>
                 </form>

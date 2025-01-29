@@ -1,12 +1,24 @@
 import useMyAgreement from '../../../Hooks/useMyAgreement';
 import Loading from '../../../Components/Shared/Loading';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../provider/AuthProvider';
 import { Link } from 'react-router-dom';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const Booking = () => {
   const { user } = useContext(AuthContext);
   const { agreements, isLoading, error } = useMyAgreement(user?.email);
+  const axiosSecure = useAxiosSecure();
+  const [getPayment, setGetPayment]= useState('');
+  // get the payment info when page is reloaded if payment database have user email then disable the payment button. 
+  useEffect(()=>{
+    axiosSecure.get(`/payments/${user.email}`)
+    .then(res=>{
+      console.log(res.data)
+      setGetPayment(res.data)
+    })
+  },[user?.email, axiosSecure])
+
 
 // using reduce to get the total price from array
 const totalPrice = agreements.reduce((total, item) => {
@@ -29,7 +41,7 @@ const totalPrice = agreements.reduce((total, item) => {
   return (
     <div className="min-h-screen flex justify-center  bg-gray-50 p-6">
       <div className="w-full max-w-4xl">
-        <h2 className="text-3xl font-semibold text-indigo-600 text-center mb-8">Rented Booking Details</h2>
+        <h2 className="text-3xl font-semibold text-indigo-600 text-center mb-8">Rented Booking Details:</h2>
 
         {agreements.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -59,8 +71,13 @@ const totalPrice = agreements.reduce((total, item) => {
               </div>
                
             ))}
-            <div className='flex justify-center items-center'>
-            <Link to='/dashboard/payment' className='bg-warning p-4 rounded-lg font-bold '>Make payment</Link>
+             {/* Payment Button */}
+             <div className='flex justify-center items-center mt-6'>
+              {getPayment ? (
+                <button className='bg-green-500 text-white px-6 py-3 rounded-lg font-bold cursor-not-allowed' disabled>Booked</button>
+              ) : (
+                <Link to='/dashboard/payment' className='bg-warning p-4 rounded-lg font-bold'>Make Payment</Link>
+              )}
             </div>
           </div>
         ) : (
