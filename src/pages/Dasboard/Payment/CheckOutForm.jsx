@@ -18,6 +18,19 @@ const CheckOutForm = ({ apartment, userEmail }) => {
     const axiosSecure = useAxiosSecure();
     const {user}= useContext(AuthContext)
     console.log({user})
+
+    // get the payment data if matches disable the pay now button
+    const [getPayment, setGetPayment]= useState('');
+    // get the payment info when page is reloaded if payment database have user email then disable the payment button. 
+    useEffect(()=>{
+      axiosSecure.get(`/payments/${user.email}`)
+      .then(res=>{
+        console.log(res.data)
+        setGetPayment(res.data)
+      })
+    },[user?.email, axiosSecure])
+
+    // make the price free of $ sign 
     const price = parseFloat(apartment.price.replace('$', '').trim()) || 0;
     console.log(price)
     // fetch the card 
@@ -171,13 +184,19 @@ const handleCouponPrice = ()=>{
 
             {/* Payment Button */}
             <div className="text-center">
+            <div className='flex justify-center items-center mt-6'>
+              {getPayment ? (
+                <button className='bg-green-500 text-white px-6 py-3 rounded-lg font-bold cursor-not-allowed' disabled>Booked</button>
+              ) : (
                 <button onClick={handleSubmit}
-                    type="submit"
-                    disabled={loading || !stripe ||!clientSecret}
-                    className="w-full py-2 mt-4 bg-orange-400 text-white font-bold rounded-lg shadow-md hover:bg-orange-500 transition-colors"
-                >
-                    {loading ? "Processing..." : "Pay Now"}
-                </button>
+                type="submit"
+                disabled={loading || !stripe ||!clientSecret}
+                className="w-full py-2 mt-4 bg-orange-400 text-white font-bold rounded-lg shadow-md hover:bg-orange-500 transition-colors"
+            >
+                {loading ? "Processing..." : "Pay Now"}
+            </button>
+              )}
+            </div>
             </div>
 
             {/* Success Message */}
