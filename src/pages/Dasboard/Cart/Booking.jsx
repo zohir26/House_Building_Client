@@ -73,7 +73,7 @@ const totalPrice = agreements.reduce((total, item) => {
             ))}
              {/* Payment Button */}
              <div className='flex justify-center items-center mt-6'>
-              {getPayment ? (
+              {getPayment.email ? (
                 <button className='bg-green-500 text-white px-6 py-3 rounded-lg font-bold cursor-not-allowed' disabled>Booked</button>
               ) : (
                 <Link to='/dashboard/payment' className='bg-warning p-4 rounded-lg font-bold'>Make Payment</Link>
