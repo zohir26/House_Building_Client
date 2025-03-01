@@ -1,45 +1,80 @@
-# Building Management
+# ![House_Management](https://i.ibb.co.com/1f9f5rk2/Screenshot-19.png)
 
-## Purpose
+# 🏠 House Management
 
-The **Building Management** project is designed to help manage residential properties effectively. With this platform, landlords and tenants can easily track their agreements, view rental details, manage bookings, and make payments. This tool helps streamline the management of houses, making it simpler for both owners and tenants to stay organized.
+## 🌟 Overview
+House Management is a full-stack web application that allows users to **buy apartments** and manage their ownership efficiently. The project features **separate dashboards** for **admins, users, and members**, ensuring role-based access and functionality.
 
----
-
-## Live URL
-
-Check out the live version of the **Building Management** app here:
-
-[Live Demo - Building Management](https://first-firebase-7d3a1.web.app/)
-
----
-[GitHub-Client]([GitHub-Client](https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-zohir26))
-
----
-[GitHub-Server]([GitHub-Server]([https://github.com/Programming-Hero-Web-Course4/b10a12-server-side-zohir26/blob/main/index.js]))
-
-## Key Features
-
-- **User Profile Management**: Users can view and update their profile with rented apartment details, such as flat number, location, area, price, and agreement acceptance date.
-- **Rental Booking Details**: View detailed booking information, including apartment details, rent price, and agreement dates.
-- **Responsive Design**: The interface is fully responsive, ensuring an optimal viewing experience on all screen sizes.
-- **Real-Time Data Fetching**: Fetches user-specific data in real-time with React Query, ensuring that the data stays up to date.
-- **Payment Integration**: Users can view total rent prices and make payments directly through the platform.
-- **Error Handling & Loading States**: Provides clear error messages and loading indicators to enhance the user experience during data fetching and processing.
-- **Modern UI with Tailwind CSS**: A clean, modern, and user-friendly UI built with Tailwind CSS.
+🔗 **Live Project**: [House Management Live Demo](https://first-firebase-7d3a1.web.app/)
 
 ---
 
-## npm Packages Used
-
-- **React**: A JavaScript library for building user interfaces.
-- **React Query**: For fetching and syncing data in React applications.
-- **Tailwind CSS**: A utility-first CSS framework for creating beautiful, responsive UIs.
-- **Axios**: A promise-based HTTP client for making requests to interact with the backend.
-- **React Context API**: For managing global state throughout the app.
-- **React Router**: For routing and navigation between different pages.
-- **React Icons**: For adding customizable icons to enhance the UI.
+## 📌 Table of Contents
+- [🌟 Overview](#-overview)
+- [🛠️ Technologies Used](#️-technologies-used)
+- [✨ Features](#-features)
+- [📦 Dependencies](#-dependencies)
+- [🚀 Getting Started](#-getting-started)
+- [🔗 Live Project & Resources](#-live-project--resources)
 
 ---
 
+## 🛠️ Technologies Used
+The project is built using modern technologies for performance and scalability:
+
+- **Frontend**: React, React Router, Tailwind CSS, DaisyUI
+- **Backend**: Node.js, Express.js, MongoDB
+- **State Management**: Context API, React Query
+- **Authentication**: Firebase Authentication
+- **Payment Integration**: Stripe
+- **Development Tools**: Vite, ESLint, PostCSS
+
+---
+
+## ✨ Features
+✔️ **User Dashboard**: View purchased apartments, transaction history, and manage payments  
+✔️ **Admin Dashboard**: Manage listings, users, and sales reports  
+✔️ **Member Dashboard**: View relevant apartment details and management tools  
+✔️ **Secure Authentication**: Firebase-based login and role-based access control  
+✔️ **Real-Time Data Fetching**: Ensures up-to-date apartment availability and user details  
+✔️ **Integrated Payment System**: Stripe payment processing for apartment purchases  
+✔️ **Responsive Design**: Optimized for all screen sizes using Tailwind CSS  
+✔️ **Error Handling & Loading States**: Smooth user experience with clear feedback  
+✔️ **Modern UI with Dark/Light Mode**: Built with Tailwind CSS & DaisyUI for a clean look  
+
+---
+
+## 📦 Dependencies
+Here are the main dependencies used in the project:
+
+### **Core Dependencies**
+```json
+{
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1",
+  "react-router-dom": "^7.1.1",
+  "axios": "^1.7.9",
+  "firebase": "^11.1.0",
+  "react-query": "^3.39.2",
+  "tailwindcss": "^3.4.17",
+  "daisyui": "^4.12.23",
+  "eslint": "^9.17.0",
+  "postcss": "^8.4.49"
+}
+```
+
+### 🚀 Getting Started
+```sh
+git clone https://github.com/zohir26/House_Building_Client.git
+cd house_management
+npm install
+npm run dev
+```
+
+### 🔗 Live Project & Resources
+- **Live Demo**: [House Management Live](https://first-firebase-7d3a1.web.app/)
+- **GitHub Client**: [GitHub Repo](https://github.com/zohir26/House_Building_Client.git)
+- **GitHub Server**: [GitHub Repo](https://github.com/zohir26/b10a12-server-side-zohir26.git)
+
+📧 **For support, contact:** mdzohirhossain500@gmail.com
 
