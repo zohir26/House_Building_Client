@@ -50,7 +50,7 @@ const About = () => {
 
                             <div className='bg-red-300 p-4 rounded-xl'>
                                 <span className='font-bold'>Safety and Security</span> <br />
-                                The building is equipped with advanced security systems, including 24/7 surveillance, secure access control, and a dedicated concierge team, ensuring the utmost safety and peace of mind for residents.
+                                The building is equipped with advanced security systems, including 24/7 surveillance,ensuring the utmost safety and peace of mind for residents.
                             </div>
                         </motion.div>
 
