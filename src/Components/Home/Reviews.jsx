@@ -2,11 +2,13 @@ import React from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import ReactStars from "react-rating-stars-component";
+
 const Reviews = () => {
     const axiosSecure = useAxiosSecure();
+
     const ratingChanged = (newRating) => {
         console.log(newRating);
-      };
+    };
 
     const { data: reviews = [] } = useQuery({
         queryKey: ['reviews'],
@@ -17,35 +19,32 @@ const Reviews = () => {
     });
 
     return (
-
         <>
-            <h1 className='text-center text-2xl font-bold py-4'>See what our customers are saying...</h1>
-            <div className='container lg:w-full sm:w-1/2 mx-auto grid grid-cols-1 lg:grid-cols-3  '>
-
+            <h1 className='text-center text-2xl font-bold py-6'>See what our customers are saying...</h1>
+            <div className='container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4'>
                 {
-                    reviews.map(review => (
-                        <div className="card w-96 mx-auto">
-                            <figure>
-                                <img
-                                    src="https://i.ibb.co.com/P1qQLg7/shakib.jpg"
-                                    alt="car!" />
-                            </figure>
-                            <div className="card-body">
-                                <h2 className="card-title">Name: {review.name}</h2>
-                                <p className=''>Flat Purchased:{review.flat_purchased}</p>
-                                <p>Experience: {review.experience}</p>
-
-                                <div className='flex justify-center items-center'>
-                                <ReactStars count={5}
-                                    onChange={ratingChanged}
-                                    value= {review.rating}
-                                    size={24}
-                                    activeColor="#ffd700"
-                                    >
-                                    Rating: {review.rating}
-                                </ReactStars>
+                    reviews.map((review, index) => (
+                        <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden max-w-sm mx-auto w-full">
+                            <img
+                                src={review.img}
+                                alt="Customer"
+                                className="w-full h-48 object-cover"
+                            />
+                            <div className="p-4 space-y-2">
+                                <h2 className="text-lg font-semibold">Name: {review.name}</h2>
+                                <p className="text-gray-600">Flat Purchased: {review.flat_purchased}</p>
+                                <p className="text-gray-700">Experience: {review.experience}</p>
+                                <div className="flex justify-start items-center">
+                                    <ReactStars
+                                        count={5}
+                                        onChange={ratingChanged}
+                                        value={review.rating}
+                                        size={24}
+                                        activeColor="#ffd700"
+                                        edit={false}
+                                    />
+                                    <span className="ml-2 text-sm text-gray-600">({review.rating})</span>
                                 </div>
-
                             </div>
                         </div>
                     ))
