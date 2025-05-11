@@ -1,65 +1,66 @@
 import React from 'react';
-import { motion } from "motion/react"
+import { motion } from "framer-motion"; // Note: corrected import from "motion/react" to "framer-motion"
+
 const About = () => {
     return (
-        <div className=" flex justify-center items-center">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-
-                <div className='text-center'>
-                    <h1 className="text-5xl font-bold">About the Building</h1>
-                    <p className="py-6">
-                        <span className='font-bold text-2xl py-4'>Welcome to Your Dream Home</span> <br></br>
-
+        <div className="flex justify-center items-center px-4 py-10">
+            <div className="hero-content flex-col lg:flex-row-reverse w-full max-w-7xl">
+                <div className='text-center w-full'>
+                    <h1 className="text-5xl font-bold mb-4">About the Building</h1>
+                    <p className="py-4 text-lg">
+                        <span className='font-bold text-2xl block mb-2'>Welcome to Your Dream Home</span>
                         Experience the pinnacle of luxury living at our newly developed residential building, nestled in the heart of the city. This meticulously designed building offers an unparalleled blend of modern architecture, state-of-the-art amenities, and exceptional comfort, making it the perfect place to call home.
                     </p>
-                    <div className='py-4 '>
+                    <div className='py-6'>
                         <img
-                            src="https://i.ibb.co.com/F8DcsDy/ap8.jpg"
-                            className=" rounded-lg" />
+                            src="https://i.ibb.co/F8DcsDy/ap8.jpg"
+                            className="rounded-lg w-full max-w-xl mx-auto"
+                            alt="Building"
+                        />
                     </div>
-                    <div className='lg:flex gap-3 mb-4 space-y-4 lg:space-y-0'>
-                        <motion.div initial={{ scale: 1 }}
-                            whileHover={{ scale: 1.05 }}
 
-                            transition={{ type: "spring", duration: 1 }}>
-                        <div className='bg-red-200 p-4 rounded-xl'>
-                            <span className='font-bold'>Prime Location</span> <br />
-                            Situated in a prestigious neighborhood, the building provides easy access to top-rated schools, renowned shopping destinations, gourmet restaurants, and cultural landmarks. Enjoy the convenience of urban living while being surrounded by lush green parks and serene walking paths.</div>
-                        </motion.div>
-                        <motion.div initial={{ scale: 1 }}
-                            whileHover={{ scale: 1.05 }}
-
-                            transition={{ type: "spring", duration: 1 }}>
-                        <div className='bg-red-300 p-4 rounded-xl'>
-                            <span className='font-bold'>Elegant Design</span> <br />
-                            Our building boasts a contemporary design with sleek lines and a sophisticated facade. Each unit is thoughtfully crafted with an open floor plan, floor-to-ceiling windows, and high ceilings that flood the living spaces with natural light. The use of premium materials and finishes adds a touch of elegance and refinement to every corner.</div>
-                        </motion.div>
-                        <motion.div initial={{ scale: 1 }}
-                            whileHover={{ scale: 1.05 }}
-
-                            transition={{ type: "spring", duration: 1 }}>
-                        <div className='bg-red-200 p-4 rounded-xl'>
-                            <span className='font-bold'>Smart Home Technology</span> <br />
-                            Each unit is equipped with cutting-edge smart home technology, allowing residents to control lighting, climate, security, and entertainment systems with ease. Stay connected and in control with the touch of a button, whether you are at home or on the go.</div>
-
-                        </motion.div>
-                        <motion.div initial={{ scale: 1 }}
-                            whileHover={{ scale: 1.05 }}
-
-                            transition={{ type: "spring", duration: 1 }}>
-
-                            <div className='bg-red-300 p-4 rounded-xl'>
-                                <span className='font-bold'>Safety and Security</span> <br />
-                                The building is equipped with advanced security systems, including 24/7 surveillance,ensuring the utmost safety and peace of mind for residents.
-                            </div>
-                        </motion.div>
-
+                    {/* Card section */}
+                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8'>
+                        {[
+                            {
+                                title: "Prime Location",
+                                text: "Situated in a prestigious neighborhood, the building provides easy access to top-rated schools, renowned shopping destinations, gourmet restaurants, and cultural landmarks.",
+                                bg: "bg-red-200"
+                            },
+                            {
+                                title: "Elegant Design",
+                                text: "Our building boasts a contemporary design with sleek lines and sophisticated features including floor-to-ceiling windows and premium finishes.",
+                                bg: "bg-red-300"
+                            },
+                            {
+                                title: "Smart Home Technology",
+                                text: "Control lighting, climate, security, and entertainment systems with ease from anywhere with cutting-edge smart home features.",
+                                bg: "bg-red-200"
+                            },
+                            {
+                                title: "Safety and Security",
+                                text: "Advanced 24/7 surveillance and modern security systems ensure the utmost safety and peace of mind for residents.",
+                                bg: "bg-red-300"
+                            }
+                        ].map((card, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ scale: 1 }}
+                                whileHover={{ scale: 1.05 }}
+                                transition={{ type: "spring", duration: 1 }}
+                                className={`${card.bg} p-6 rounded-xl flex flex-col justify-between h-full`}
+                            >
+                                <h3 className='font-bold text-lg mb-2'>{card.title}</h3>
+                                <p className='text-sm text-gray-700'>{card.text}</p>
+                            </motion.div>
+                        ))}
                     </div>
+
                     <motion.button 
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                     >
-                    <button className="btn btn-primary">Get Started</button>
+                        <button className="btn btn-primary">Get Started</button>
                     </motion.button>
                 </div>
             </div>
