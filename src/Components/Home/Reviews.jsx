@@ -25,11 +25,13 @@ const Reviews = () => {
                 {
                     reviews.map((review, index) => (
                         <div key={index} className="bg-white rounded-2xl shadow-lg overflow-hidden max-w-sm mx-auto w-full">
-                            <img
+                            <figure>
+                                <img
                                 src={review.img}
                                 alt="Customer"
                                 className="w-full h-48 object-cover"
                             />
+                            </figure>
                             <div className="p-4 space-y-2">
                                 <h2 className="text-lg font-semibold">Name: {review.name}</h2>
                                 <p className="text-gray-600">Flat Purchased: {review.flat_purchased}</p>
