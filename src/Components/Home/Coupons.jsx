@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const Coupons = () => {
     const axiosSecure = useAxiosSecure();
-
+// fetching data from mongodb using axios
     const { data: coupons = [] } = useQuery({
         queryKey: ['coupons'],
         queryFn: async () => {
@@ -27,6 +27,7 @@ const Coupons = () => {
                             alt="Coupon"
                             className="w-full h-48 object-cover"
                         />
+                        // show the coupon info into cards
                         <div className="p-4">
                             <h2 className="text-lg font-semibold text-gray-800">{coupon.description}</h2>
                             <div className="flex justify-between items-center mt-4">

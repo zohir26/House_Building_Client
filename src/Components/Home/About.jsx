@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from "framer-motion"; // Note: corrected import from "motion/react" to "framer-motion"
+import { motion } from "motion/react"; // Note: corrected import from "motion/react" to "framer-motion"
 
 const About = () => {
     return (
