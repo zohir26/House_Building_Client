@@ -15,7 +15,7 @@ const Coupons = () => {
     });
 
     return (
-        <div className="bg-[#f9fafb] py-12 px-4">
+        <div className="bg-[#f9fafb] py-8 px-4">
             <h1 className="text-4xl font-extrabold text-center text-[#2C3E50] mb-10">
                 Available Coupons
             </h1>
