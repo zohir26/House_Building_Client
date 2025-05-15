@@ -16,46 +16,58 @@ const Banner = () => {
         },
     });
 
-    if (isLoading) {
-        return <Loading></Loading>;
-    }
+    if (isLoading) return <Loading />;
+    if (isError)
+        return (
+            <div className="text-center text-lg font-bold text-red-500 py-8">
+                Error fetching apartments data
+            </div>
+        );
 
-    if (isError) {
-        return <div className="text-center text-lg font-bold text-red-500">Error fetching apartments data</div>;
+    if (apartments.length === 0) {
+        return (
+            <div className="text-center text-lg font-semibold py-8 text-gray-500">
+                No apartments available at the moment.
+            </div>
+        );
     }
 
     return (
-                <div className="container mx-auto py-8">
-                    <h2 className="text-center text-2xl font-semibold mb-6 ">
-                        Grab the best flats at affordable prices
-                    </h2>
-                    <Carousel
-                        showArrows={true}
-                        infiniteLoop={true}
-                        useKeyboardArrows={true}
-                        autoPlay={true}
-                        interval={3000}
-                        transitionTime={500}
-                        showThumbs= {false}
-                        centerMode= {true}
-                        showStatus={false}
-                        
-                        
-                    >
-                        {apartments.map(apartment => (
-                            <div key={apartment.id} className="relative">
-                                <img
-                                    src={apartment.img}
-                                    alt={`Apartment ${apartment.id}`}
-                                    className="h-[600px] w-full object-cover"
-                                />
-                                <p className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded">
-                                    Apartment {apartment._id}
-                                </p>
-                            </div>
-                        ))}
-                    </Carousel>
-                </div>
+        <div className="max-w-screen-xl mx-auto px-4 py-8">
+            {/* <h2 className="text-center text-2xl md:text-3xl font-bold mb-6 text-gray-800">
+                Grab the best flats at affordable prices
+            </h2> */}
+            <Carousel
+                showArrows
+                infiniteLoop
+                useKeyboardArrows
+                autoPlay
+                interval={4000}
+                transitionTime={600}
+                showThumbs={false}
+                centerMode={false}
+                showStatus={false}
+                swipeable
+                emulateTouch
+            >
+                {apartments.map(apartment => (
+                    <div key={apartment._id} className="relative">
+                        <img
+                            src={apartment.img}
+                            alt={`Apartment ${apartment.title || apartment._id}`}
+                            className="w-full h-[60vh] md:h-[70vh] lg:h-[80vh] object-cover rounded-lg"
+                            loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-end p-6">
+                            <h3 className="text-white text-lg font-semibold">
+                                {apartment.title}
+                            </h3>
+                        </div>
+
+                    </div>
+                ))}
+            </Carousel>
+        </div>
     );
 };
 
