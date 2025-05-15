@@ -1,31 +1,38 @@
 import React from 'react';
-import map from '../../assets/map 2.jpg'
-import { Map, Marker } from "pigeon-maps"
+import { Map, Marker } from "pigeon-maps";
 import { TypeAnimation } from 'react-type-animation';
+
 const Location = () => {
     return (
-        <div className='flex flex-col justify-center items-center'>
-            <h1 className='text-2xl font-bold text-center'>
-                How to reach the destination?
-            </h1>
-            <div className='py-4 text-center container mx-auto w-1/2'>
-                <TypeAnimation
-                    sequence={[
-                        "It is located in  Centre of City is set in Dhaka, 3.1 km from Stamford University Bangladesh and 3.2 km from Supreme Court of Bangladesh. Among the facilities of this property are a restaurant, room service and a 24-hour front desk, along with free WiFi. The property is non-smoking and is situated 700 metres from Notre Dame University Bangladesh.BUET is 4.3 km from the accommodation, while Jagannath University is 4.3 km from the property. Hazrat Shahjalal International Airport is 13 km away."
-                    ]}
-                    wrapper="span"
-                    speed={50}
-                    style={{ fontSize: '1em', display: 'inline-block' }}
+        <div className="bg-[#f9fafb] py-8 px-4 lg:px-0">
+            <div className="max-w-7xl mx-auto text-center">
+                <h1 className="text-4xl font-extrabold text-[#2C3E50] mb-6">
+                    How to Reach the Destination?
+                </h1>
 
-                />
+                <div className="mb-10 max-w-4xl mx-auto text-gray-700 text-lg leading-relaxed">
+                    <TypeAnimation
+                        sequence={[
+                            "Located in the heart of Dhaka, just minutes from Stamford University and Supreme Court of Bangladesh. With easy access to Notre Dame University, BUET, and Jagannath University. The building is only 13 km away from Hazrat Shahjalal International Airport."
+                        ]}
+                        wrapper="span"
+                        speed={50}
+                        style={{ display: 'inline-block' }}
+                    />
+                </div>
+
+                <div className="w-full px-4">
+                    <div className="rounded-2xl overflow-hidden shadow-lg max-w-6xl mx-auto">
+                        <Map
+                            height={400}
+                            defaultCenter={[23.8041, 90.4152]}
+                            defaultZoom={13}
+                        >
+                            <Marker width={50} anchor={[23.8041, 90.4152]} />
+                        </Map>
+                    </div>
+                </div>
             </div>
-            <div className='min-w-screen-md px-2 m-auto rounded-xl'>
-                
-                <Map height={400} width={900} defaultCenter={[23.8041, 90.4152]} defaultZoom={11}>
-                    <Marker width={50} anchor={[23.8041, 90.4152]} />
-                </Map>
-            </div>
-           
         </div>
     );
 };

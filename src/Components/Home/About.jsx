@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from "motion/react";
 import { useNavigate } from 'react-router-dom';
 
 const About = () => {
@@ -25,7 +25,7 @@ const About = () => {
   ];
 
   return (
-    <section className="bg-white text-gray-800 py-16 px-4">
+    <section className="bg-white text-gray-800 py-8 px-4">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
         {/* Image Section */}
         <div className="w-full lg:w-1/2">
