@@ -1,89 +1,113 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
-// import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../provider/AuthProvider';
 import Loading from '../../Components/Shared/Loading';
-import useMyAgreement from '../../Hooks/useMyAgreement';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import {
+  PieChart, Pie, Cell, ResponsiveContainer,
+  BarChart, Bar, XAxis, YAxis, Tooltip, Legend
+} from 'recharts';
+
+const COLORS = ['#4F46E5', '#10B981', '#F59E0B', '#EF4444'];
 
 const AdminProfile = () => {
   const { user } = useContext(AuthContext);
-const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
 
- // todo: fetch apartment data
-  const {data:apartment =[]} = useQuery({
-    queryKey: ['apartment'],
-    queryFn: async () =>{
-        const res = await axiosSecure.get('/apartments')
-        return res.data
-    }
-  })
- // todo: fetch available agreement
+  const { data: apartment = [], isLoading: loading1 } = useQuery(['apartment'], async () => {
+    const res = await axiosSecure.get('/apartments');
+    return res.data;
+  });
 
-// todo: all agreement
-  const {data: agreement =[]}= useQuery({
-    queryKey: ['agreements'],
-    queryFn: async () =>{
-        const res = await  axiosSecure.get('/agreements')
-         return res.data
-    }
-  })
+  const { data: agreement = [], isLoading: loading2 } = useQuery(['agreements'], async () => {
+    const res = await axiosSecure.get('/agreements');
+    return res.data;
+  });
 
- // todo: No of users
-   const { data: users = [], refetch } = useQuery({
-          queryKey: ['users'],
-          // for localstorage the headers need to send
-          queryFn: async () => {
-              const res = await axiosSecure.get('/users');
-              return res.data;
-          }
-      });
- 
- // todo: No of members
-      const {data:member=[]}= useQuery({
-        queryKey:['members'],
-        queryFn:async ()=>{
-           const res= await axiosSecure.get('/agreements', {
-                params: {role:'member'}
-            })
-            return res.data;
-        }
-      })
-     const availableRoom = apartment.length - member.length
+  const { data: users = [], isLoading: loading3 } = useQuery(['users'], async () => {
+    const res = await axiosSecure.get('/users');
+    return res.data;
+  });
+
+  const { data: member = [], isLoading: loading4 } = useQuery(['members'], async () => {
+    const res = await axiosSecure.get('/agreements', {
+      params: { role: 'member' },
+    });
+    return res.data;
+  });
+
+  if (loading1 || loading2 || loading3 || loading4) {
+    return <Loading />;
+  }
+
+  const availableRoom = apartment.length - member.length;
+
+  const pieData = [
+    { name: 'Available', value: availableRoom },
+    { name: 'Booked', value: member.length },
+  ];
+
+  const barData = [
+    { name: 'Users', value: users.length },
+    { name: 'Agreements', value: agreement.length },
+    { name: 'Apartments', value: apartment.length },
+  ];
+
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-bold text-center text-gray-800">My Profile</h1>
+      <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Admin Profile & Statistics</h1>
 
-      {/* User Profile Section */}
-      <div className="mt-8 flex flex-col md:flex-row items-center justify-between bg-white p-6 rounded-lg shadow-lg">
-        <div className="flex-shrink-0">
-          <img
-            src={user?.photoURL || '/default-user.png'}
-            alt="User Avatar"
-            className="w-32 h-32 rounded-full object-cover border-2 border-gray-300"
-          />
-        </div>
-        <div className="ml-0 md:ml-6 text-center md:text-left">
+      <div className="bg-white p-6 rounded-lg shadow-md flex flex-col md:flex-row items-center gap-6">
+        <img
+          src={user?.photoURL || '/default-user.png'}
+          alt="User Avatar"
+          className="w-32 h-32 rounded-full object-cover border-2 border-gray-300"
+        />
+        <div className="text-center md:text-left">
           <h2 className="text-2xl font-semibold text-gray-700">{user?.displayName || 'Anonymous'}</h2>
-          <p className="text-gray-500 mt-1">{user?.email}</p>
+          <p className="text-gray-500">{user?.email}</p>
         </div>
       </div>
 
-      {/* Agreement Details */}
-      <div className="min-h-screen flex justify-center  bg-gray-50 p-6">
-      <div className="w-full max-w-4xl">
-        <h2 className="text-3xl font-semibold text-indigo-600 text-center mb-8">Rented Booking Details</h2>
-        <ul className='text-2xl py-4 flex flex-col gap-4'>
-            <li>Total Rooms: {apartment.length} </li>
-            <li> No Available Rooms:{availableRoom} </li>
-            <li>No Agreement:{agreement.length} </li>
-            <li> No of Users: {users.length} </li>
-            <li> No of Members:{member.length} </li>
-        </ul>
-       
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+        {/* Pie Chart for Room Status */}
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-semibold text-center text-indigo-600 mb-4">Room Availability</h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={pieData}
+                dataKey="value"
+                nameKey="name"
+                cx="50%"
+                cy="50%"
+                outerRadius={100}
+                label
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Bar Chart for Summary */}
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-semibold text-center text-indigo-600 mb-4">System Summary</h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={barData}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="value" fill="#4F46E5" radius={[10, 10, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-      
-    </div>
     </div>
   );
 };
