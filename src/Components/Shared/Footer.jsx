@@ -4,7 +4,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
     return (
-        <footer className="bg-[#2C3E50] text-white w-full py-10 px-4">
+        <footer className="bg-[#2C3E50] text-white w-full py-8 px-4">
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
                 
                 {/* Logo and Title Side by Side */}

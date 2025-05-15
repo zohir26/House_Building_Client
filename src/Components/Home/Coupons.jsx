@@ -2,8 +2,10 @@ import React from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
 
 const Coupons = () => {
+    const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
 
     const { data: coupons = [] } = useQuery({
@@ -27,6 +29,7 @@ const Coupons = () => {
                         whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(0,0,0,0.15)" }}
                         transition={{ type: "spring", stiffness: 300 }}
                         className="bg-white rounded-2xl shadow-md overflow-hidden"
+                        onClick={() => navigate('/apartments')}
                     >
                         <img
                             src={coupon.img}
