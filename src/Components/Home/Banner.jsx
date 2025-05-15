@@ -4,6 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Loading from '../Shared/Loading';
+import { Typewriter } from 'react-simple-typewriter';
 
 const Banner = () => {
     const axiosSecure = useAxiosSecure();
@@ -37,6 +38,21 @@ const Banner = () => {
             {/* <h2 className="text-center text-2xl md:text-3xl font-bold mb-6 text-gray-800">
                 Grab the best flats at affordable prices
             </h2> */}
+            {/* Persistent Typing Text Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                <div className="bg-black bg-opacity-50 text-white text-xl md:text-3xl font-semibold px-6 py-4 rounded-lg shadow-lg transition-opacity duration-1000 opacity-100">
+                    <Typewriter
+                        words={['Find Your Dream Apartment Today']}
+                        loop={1}
+                        cursor
+                        cursorStyle="|"
+                        typeSpeed={80}
+                        deleteSpeed={50}
+                        delaySpeed={2000}
+                    />
+                </div>
+            </div>
+
             <Carousel
                 showArrows
                 infiniteLoop
