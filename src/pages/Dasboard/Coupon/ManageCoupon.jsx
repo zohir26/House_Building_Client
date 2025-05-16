@@ -1,8 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
+
 import React from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { FaTrash } from 'react-icons/fa6';
+import { useQuery } from 'react-query';
 
 const ManageCoupon = () => {
     const axiosSecure = useAxiosSecure();

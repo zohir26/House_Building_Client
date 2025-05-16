@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../../provider/AuthProvider';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from 'react-query';
+
 
 const AllPayment = () => {
     const axiosSecure = useAxiosSecure();

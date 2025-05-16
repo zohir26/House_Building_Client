@@ -1,8 +1,8 @@
 import React from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import { useQuery } from '@tanstack/react-query';
 import ReactStars from "react-rating-stars-component";
 import { motion } from 'motion/react';
+import { useQuery } from 'react-query';
 
 const Reviews = () => {
     const axiosSecure = useAxiosSecure();

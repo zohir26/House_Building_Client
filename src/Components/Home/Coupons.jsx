@@ -1,8 +1,8 @@
 import React from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import { useQuery } from '@tanstack/react-query';
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
 
 const Coupons = () => {
     const navigate = useNavigate();

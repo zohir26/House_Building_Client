@@ -1,8 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
+
 import React from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { useState } from 'react';
+import { useQuery } from 'react-query';
 
 const ManageBooking = () => {
   const axiosSecure = useAxiosSecure();

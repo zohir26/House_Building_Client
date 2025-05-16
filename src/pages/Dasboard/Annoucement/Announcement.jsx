@@ -1,6 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
+
 import React from 'react';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import { useQuery } from 'react-query';
 
 const Announcement = () => {
     const axiosPublic = useAxiosPublic();

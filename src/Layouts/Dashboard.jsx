@@ -1,13 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../Components/Shared/Navbar";
-import { FaOpencart, FaHome, FaMicrophone, FaMoneyBill } from "react-icons/fa6";
+import { FaOpencart, FaMicrophone, FaMoneyBill} from "react-icons/fa6";
 import { GrAnnounce, GrCapacity } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
-import { FaHistory } from "react-icons/fa";
 import { MdOutlinePayments } from "react-icons/md";
 import useAdmin from "../Hooks/useAdmin";
 import Loading from "../Components/Shared/Loading";
 import useMember from "../Hooks/useMember";
+import { FaHistory, FaHome } from "react-icons/fa";
 
 const Dashboard = () => {
   const [isAdmin, isAdminLoading] = useAdmin();
@@ -21,34 +21,42 @@ const Dashboard = () => {
     );
   }
 
+  const navLinkClass = ({ isActive }) =>
+    `flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-300 ${
+      isActive
+        ? "bg-indigo-600 text-white shadow-md"
+        : "text-gray-700 hover:bg-indigo-100 hover:text-indigo-600"
+    }`;
+
   let routesToRender;
+
   if (isAdmin) {
     routesToRender = (
       <>
-        <li><NavLink to="/dashboard/adminProfile"><CgProfile />Admin Profile</NavLink></li>
-        <li><NavLink to="/dashboard/manageBooking"><FaOpencart />Manage Booking</NavLink></li>
-        <li><NavLink to="/dashboard/allUsers"><CgProfile />All Users</NavLink></li>
-        <li><NavLink to="/dashboard/addAnnouncement"><FaMicrophone />Make Announcement</NavLink></li>
-        <li><NavLink to="/dashboard/coupons"><GrAnnounce />Manage Coupon</NavLink></li>
-        <li><NavLink to="/dashboard/addCoupons"><GrCapacity />Add Coupons</NavLink></li>
-        <li><NavLink to="/dashboard/allPayment"><FaMoneyBill />All Payment History</NavLink></li>
+        <li><NavLink to="/dashboard/adminProfile" className={navLinkClass}><CgProfile />Admin Profile</NavLink></li>
+        <li><NavLink to="/dashboard/manageBooking" className={navLinkClass}><FaOpencart />Manage Booking</NavLink></li>
+        <li><NavLink to="/dashboard/allUsers" className={navLinkClass}><CgProfile />All Users</NavLink></li>
+        <li><NavLink to="/dashboard/addAnnouncement" className={navLinkClass}><FaMicrophone />Make Announcement</NavLink></li>
+        <li><NavLink to="/dashboard/coupons" className={navLinkClass}><GrAnnounce />Manage Coupon</NavLink></li>
+        <li><NavLink to="/dashboard/addCoupons" className={navLinkClass}><GrCapacity />Add Coupons</NavLink></li>
+        <li><NavLink to="/dashboard/allPayment" className={navLinkClass}><FaMoneyBill />All Payment History</NavLink></li>
       </>
     );
   } else if (isMember) {
     routesToRender = (
       <>
-        <li><NavLink to="/dashboard/myProfile"><CgProfile />My Profile</NavLink></li>
-        <li><NavLink to="/dashboard/booking"><FaOpencart />My Booking</NavLink></li>
-        <li><NavLink to="/dashboard/payment"><MdOutlinePayments />Make Payment</NavLink></li>
-        <li><NavLink to="/dashboard/paymentHistory"><FaHistory />Payment History</NavLink></li>
-        <li><NavLink to="/dashboard/announcement"><GrAnnounce />Announcement</NavLink></li>
+        <li><NavLink to="/dashboard/myProfile" className={navLinkClass}><CgProfile />My Profile</NavLink></li>
+        <li><NavLink to="/dashboard/booking" className={navLinkClass}><FaOpencart />My Booking</NavLink></li>
+        <li><NavLink to="/dashboard/payment" className={navLinkClass}><MdOutlinePayments />Make Payment</NavLink></li>
+        <li><NavLink to="/dashboard/paymentHistory" className={navLinkClass}><FaHistory />Payment History</NavLink></li>
+        <li><NavLink to="/dashboard/announcement" className={navLinkClass}><GrAnnounce />Announcement</NavLink></li>
       </>
     );
   } else {
     routesToRender = (
       <>
-        <li><NavLink to="/dashboard/myProfile"><CgProfile />My Profile</NavLink></li>
-        <li><NavLink to="/dashboard/announcement"><GrAnnounce />Announcement</NavLink></li>
+        <li><NavLink to="/dashboard/myProfile" className={navLinkClass}><CgProfile />My Profile</NavLink></li>
+        <li><NavLink to="/dashboard/announcement" className={navLinkClass}><GrAnnounce />Announcement</NavLink></li>
       </>
     );
   }
@@ -56,15 +64,20 @@ const Dashboard = () => {
   return (
     <>
       <Navbar />
-      <div className="flex gap-4 bg-gray-100 min-h-screen">
-        <aside className="w-64 bg-white shadow-md py-10 px-4">
-          <ul className="space-y-4 text-lg font-medium text-gray-700">
+      <div className="flex flex-col md:flex-row bg-gray-100 min-h-screen">
+        {/* Sidebar */}
+        <aside className="w-full md:w-64 bg-white shadow-lg py-8 px-4 sticky top-0">
+          <ul className="space-y-2">
             {routesToRender}
-            <div className="divider"></div>
-            <li><NavLink to="/" className="text-blue-600 hover:underline flex items-center gap-2"><FaHome />Home</NavLink></li>
+            <div className="my-4 border-t border-gray-200" />
+            <li>
+              <NavLink to="/" className={navLinkClass}><FaHome />Home</NavLink>
+            </li>
           </ul>
         </aside>
-        <main className="flex-1 p-8 bg-white rounded-lg shadow-md">
+
+        {/* Main Content */}
+        <main className="flex-1 p-6">
           <Outlet />
         </main>
       </div>

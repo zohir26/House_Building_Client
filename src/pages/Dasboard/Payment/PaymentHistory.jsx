@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../../provider/AuthProvider';
+import { useQuery } from 'react-query';
 
 const PaymentHistory = () => {
     const axiosSecure = useAxiosSecure();

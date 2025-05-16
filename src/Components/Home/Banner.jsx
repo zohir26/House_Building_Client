@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "react-query";
 import { Carousel } from 'react-responsive-carousel';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
