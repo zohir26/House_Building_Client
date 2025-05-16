@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../Components/Shared/Navbar";
-import { FaOpencart, FaMicrophone, FaMoneyBill} from "react-icons/fa6";
+import { FaOpencart, FaMicrophone, FaMoneyBill } from "react-icons/fa6";
 import { GrAnnounce, GrCapacity } from "react-icons/gr";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlinePayments } from "react-icons/md";
@@ -63,10 +63,13 @@ const Dashboard = () => {
 
   return (
     <>
+      {/* Sticky top navbar */}
       <Navbar />
-      <div className="flex flex-col md:flex-row bg-gray-100 min-h-screen">
+
+      {/* Container with full height minus navbar */}
+      <div className="flex flex-col md:flex-row bg-gray-100 min-h-[calc(100vh-64px)]">
         {/* Sidebar */}
-        <aside className="w-full md:w-64 bg-white shadow-lg py-8 px-4 sticky top-0">
+        <aside className="w-full md:w-64 bg-white shadow-lg py-6 px-4 md:sticky md:top-16 z-10">
           <ul className="space-y-2">
             {routesToRender}
             <div className="my-4 border-t border-gray-200" />
@@ -76,8 +79,8 @@ const Dashboard = () => {
           </ul>
         </aside>
 
-        {/* Main Content */}
-        <main className="flex-1 p-6">
+        {/* Main content area */}
+        <main className="flex-1 p-4 overflow-auto">
           <Outlet />
         </main>
       </div>
